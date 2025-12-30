@@ -1,10 +1,21 @@
-<!-- Replace MY_PAGE_URL and SG_PAGE_URL below to point to your regional destinations -->
+<!--
+Blueprint
+1) Concept name: Lumen Gateway
+2) Hero idea: A calm portal of light with stadium traces that reacts to your cursor.
+   Headline sits in a soft light sweep to signal a safe, neutral entry point.
+3) Signature interaction chosen (A–E): C) Magnetic CTA
+4) Page sections:
+   - Hero / Gateway
+   - Trust / Why this exists
+   - Regions / Quick access
+5) CTA text: “Open i88 MY” and “Open i88 SG”
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>i88 Official Info Hub</title>
+  <title>i88 Region Gateway</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,14 +24,15 @@
       --bg: #05070d;
       --ink: #eef2fb;
       --muted: #9aa9c5;
-      --primary: #45d7ff;
+      --primary: #00a3ff;
       --accent: #5b8bff;
+      --gold: rgba(255, 220, 120, 0.16);
       --glass: rgba(255, 255, 255, 0.07);
       --glass-strong: rgba(255, 255, 255, 0.12);
       --radius-lg: 22px;
       --radius-md: 16px;
-      --shadow-soft: 0 26px 60px rgba(4, 10, 24, 0.6);
-      --shadow-card: 0 16px 40px rgba(4, 10, 24, 0.45);
+      --shadow-soft: 0 30px 60px rgba(4, 10, 24, 0.6);
+      --shadow-card: 0 18px 44px rgba(4, 10, 24, 0.45);
       --space-1: 8px;
       --space-2: 16px;
       --space-3: 24px;
@@ -66,11 +78,11 @@
     .bg-layer {
       position: absolute;
       inset: 0;
-      z-index: -3;
+      z-index: -4;
       background:
-        radial-gradient(800px circle at 12% 12%, rgba(69, 215, 255, 0.22), transparent 60%),
-        radial-gradient(700px circle at 85% 15%, rgba(91, 139, 255, 0.22), transparent 55%),
-        linear-gradient(140deg, rgba(12, 19, 36, 0.95), rgba(4, 8, 16, 0.98));
+        radial-gradient(900px circle at 15% 10%, rgba(0, 163, 255, 0.22), transparent 60%),
+        radial-gradient(760px circle at 85% 12%, rgba(91, 139, 255, 0.22), transparent 55%),
+        linear-gradient(150deg, rgba(10, 16, 30, 0.96), rgba(3, 6, 14, 0.98));
       transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0);
       transition: transform 0.2s ease-out;
     }
@@ -78,15 +90,32 @@
     .motion-streaks {
       position: absolute;
       inset: 0;
-      z-index: -2;
+      z-index: -3;
       background: repeating-linear-gradient(
-          120deg,
-          rgba(255, 255, 255, 0.04) 0px,
-          rgba(255, 255, 255, 0.04) 1px,
-          transparent 1px,
-          transparent 44px
-        );
+        120deg,
+        rgba(255, 255, 255, 0.05) 0px,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 48px
+      );
       opacity: 0.35;
+      transform: translateY(calc(var(--scroll-shift, 0px) * -0.2));
+    }
+
+    .pitch-lines {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.06) 48%, transparent 100%),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.05) 0px,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px,
+          transparent 120px
+        );
+      opacity: 0.08;
     }
 
     .particles {
@@ -96,10 +125,10 @@
       background:
         radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.4), transparent 40%),
         radial-gradient(1.5px 1.5px at 70% 20%, rgba(255, 255, 255, 0.4), transparent 45%),
-        radial-gradient(2px 2px at 85% 70%, rgba(255, 255, 255, 0.4), transparent 40%),
+        radial-gradient(2px 2px at 85% 70%, rgba(255, 255, 255, 0.35), transparent 40%),
         radial-gradient(1.5px 1.5px at 35% 80%, rgba(255, 255, 255, 0.35), transparent 45%);
       opacity: 0.35;
-      animation: drift 16s linear infinite;
+      animation: drift 18s linear infinite;
     }
 
     .noise {
@@ -167,10 +196,11 @@
       margin: 0 auto;
       padding: var(--space-8) var(--space-3) var(--space-10);
       display: grid;
-      gap: var(--space-8);
+      gap: var(--space-9);
     }
 
     .hero {
+      min-height: 88vh;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       gap: var(--space-6);
@@ -180,13 +210,33 @@
     .hero-copy {
       display: grid;
       gap: var(--space-3);
+      position: relative;
+    }
+
+    .headline-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .headline-sweep {
+      position: absolute;
+      inset: -30% -10% -30% -10%;
+      background: radial-gradient(
+        240px 120px at var(--sweep-x, 30%) 50%,
+        rgba(255, 255, 255, 0.2),
+        transparent 60%
+      );
+      mix-blend-mode: screen;
+      pointer-events: none;
+      transition: background 0.2s ease-out;
     }
 
     .hero-copy h1 {
-      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
       font-weight: 600;
       letter-spacing: -0.02em;
-      line-height: 1.05;
+      line-height: 1.02;
+      position: relative;
     }
 
     .hero-copy p {
@@ -195,145 +245,59 @@
       max-width: 480px;
     }
 
-    .hero-visual {
-      position: relative;
-      padding: var(--space-5);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: var(--shadow-soft);
-      min-height: 260px;
-      display: grid;
-      gap: var(--space-2);
-      overflow: hidden;
-    }
-
-    .hero-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(240px circle at 20% 20%, rgba(69, 215, 255, 0.25), transparent 70%);
-      opacity: 0.8;
-    }
-
-    .hero-visual::after {
-      content: '';
-      position: absolute;
-      inset: auto 12% 16% auto;
-      width: 160px;
-      height: 90px;
-      border-radius: 999px;
-      border: 1px solid rgba(69, 215, 255, 0.35);
-      opacity: 0.45;
-    }
-
-    .hero-visual-content {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .hero-visual-content span {
+    .chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.78rem;
+      color: var(--muted);
+      width: fit-content;
     }
 
-    .hero-visual-content span::before {
+    .chip::before {
       content: '';
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--primary);
-      box-shadow: 0 0 10px rgba(69, 215, 255, 0.6);
+      box-shadow: 0 0 10px rgba(0, 163, 255, 0.6);
     }
 
-    .section {
-      display: grid;
-      gap: var(--space-4);
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .section-lede {
-      color: var(--muted);
-      max-width: 560px;
-      font-size: 0.98rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-3);
-    }
-
-    .info-card {
-      padding: var(--space-4);
-      border-radius: var(--radius-md);
-      background: var(--glass);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: var(--shadow-card);
-      display: grid;
-      gap: 10px;
-      transition: transform 0.2s ease, border 0.2s ease;
-    }
-
-    .info-card:hover,
-    .info-card:focus-within {
-      transform: translateY(-3px);
-      border-color: rgba(69, 215, 255, 0.4);
-    }
-
-    .info-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .cta-section {
-      padding: var(--space-5);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      gap: var(--space-3);
-    }
-
-    .cta-section p {
-      color: var(--muted);
-      max-width: 560px;
-    }
-
-    .cta-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .cta-group {
+      display: flex;
       gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-top: var(--space-2);
     }
 
     .cta {
       position: relative;
       display: grid;
-      place-items: center;
       gap: 4px;
       padding: var(--space-3) var(--space-4);
       border-radius: 999px;
       background: linear-gradient(120deg, var(--primary), var(--accent));
       color: #03111f;
       font-weight: 600;
-      box-shadow: 0 18px 40px rgba(37, 140, 255, 0.35);
+      box-shadow: 0 18px 40px rgba(0, 163, 255, 0.35);
       overflow: hidden;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-width: 200px;
     }
 
     .cta span {
       position: relative;
       z-index: 1;
+    }
+
+    .cta small {
+      font-size: 0.75rem;
+      font-weight: 500;
+      opacity: 0.75;
     }
 
     .cta::after {
@@ -360,11 +324,11 @@
 
     .cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 24px 50px rgba(69, 215, 255, 0.4);
+      box-shadow: 0 24px 50px rgba(0, 163, 255, 0.4);
     }
 
     .cta:focus-visible {
-      outline: 2px solid rgba(69, 215, 255, 0.8);
+      outline: 2px solid rgba(0, 163, 255, 0.8);
       outline-offset: 3px;
     }
 
@@ -379,26 +343,173 @@
       display: none;
     }
 
-    .trust-list {
+    .portal {
+      position: relative;
+      min-height: 320px;
       display: grid;
-      gap: var(--space-2);
+      place-items: center;
+      overflow: hidden;
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 60%);
+      filter: drop-shadow(0 24px 50px rgba(0, 163, 255, 0.25));
+    }
+
+    .portal-layer {
+      position: absolute;
+      inset: 12% 14%;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 0 40px rgba(0, 163, 255, 0.18);
+      transform: translateY(calc(var(--scroll-shift, 0px) * 0.3)) scale(1);
+      transition: transform 0.2s ease;
+    }
+
+    .portal-layer.mid {
+      inset: 20% 22%;
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 0 50px rgba(0, 163, 255, 0.2);
+      transform: translateY(calc(var(--scroll-shift, 0px) * 0.5)) scale(1.02);
+    }
+
+    .portal-layer.inner {
+      inset: 30% 32%;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0 0 60px rgba(0, 163, 255, 0.25), 0 0 30px rgba(0, 163, 255, 0.3);
+      transform: translateY(calc(var(--scroll-shift, 0px) * 0.7)) scale(1.04);
+    }
+
+    .portal-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.18), transparent 60%);
+      opacity: 0.8;
+      mix-blend-mode: screen;
+      transform: translateY(calc(var(--scroll-shift, 0px) * 0.2));
+    }
+
+    .hero-note {
+      position: relative;
+      margin-top: var(--space-2);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .section-lede {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 0.98rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 163, 255, 0.6), transparent);
+      animation: shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .trust-item {
+      display: grid;
+      gap: 8px;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    .trust-list span {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .trust-item strong {
+      color: var(--ink);
+      font-weight: 600;
     }
 
-    .trust-list span::before {
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--primary);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .mini-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .mini-list span {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .region-split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+
+    .region-panel {
+      position: relative;
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: var(--space-2);
+      min-height: 220px;
+    }
+
+    .region-panel::after {
       content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 10px rgba(69, 215, 255, 0.6);
+      position: absolute;
+      inset: auto 10% 14% auto;
+      width: 160px;
+      height: 90px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 163, 255, 0.3);
+      opacity: 0.4;
+    }
+
+    .region-panel h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .region-panel p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 280px;
+    }
+
+    .region-note {
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
     footer {
@@ -417,6 +528,12 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    .legal {
+      width: 100%;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
     .fade-up {
       opacity: 0;
       transform: translateY(16px);
@@ -431,10 +548,6 @@
       animation-delay: 0.3s;
     }
 
-    .fade-up.delay-3 {
-      animation-delay: 0.45s;
-    }
-
     @keyframes fadeUp {
       to {
         opacity: 1;
@@ -445,10 +558,15 @@
     @media (max-width: 960px) {
       .hero {
         grid-template-columns: 1fr;
+        min-height: auto;
       }
 
       .nav-links {
         display: none;
+      }
+
+      .region-split {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -457,8 +575,12 @@
         padding-top: var(--space-7);
       }
 
-      .cta-row {
-        grid-template-columns: 1fr;
+      .cta-group {
+        flex-direction: column;
+      }
+
+      .cta {
+        width: 100%;
       }
     }
 
@@ -480,6 +602,13 @@
       .cta::after {
         transition: none;
       }
+
+      .bg-layer,
+      .motion-streaks,
+      .portal-layer,
+      .portal-glow {
+        transform: none !important;
+      }
     }
   </style>
 </head>
@@ -487,6 +616,7 @@
   <div class="page">
     <div class="bg-layer" aria-hidden="true"></div>
     <div class="motion-streaks" aria-hidden="true"></div>
+    <div class="pitch-lines" aria-hidden="true"></div>
     <div class="particles" aria-hidden="true"></div>
     <div class="noise" aria-hidden="true"></div>
 
@@ -504,73 +634,98 @@
     <main>
       <section class="hero" id="top">
         <div class="hero-copy fade-up">
-          <h1>Explore first. Decide when you’re ready.</h1>
-          <p>A simple place to check updates, features, and regional info.</p>
-        </div>
-        <div class="hero-visual fade-up delay-1" aria-hidden="true">
-          <div class="hero-visual-content">
-            <span>Stadium light traces</span>
-            <span>Motion lines and glow</span>
-            <span>Calm, neutral gateway</span>
+          <div class="headline-wrap">
+            <div class="headline-sweep" aria-hidden="true"></div>
+            <h1>Explore first. Decide when ready.</h1>
           </div>
+          <p>No pressure. Pick your region to explore updates & highlights.</p>
+          <span class="chip">Trusted since 2016</span>
+          <div class="cta-group" aria-label="Primary actions">
+            <a class="cta magnetic" id="cta-my" href="#" target="_blank" rel="noopener" aria-label="Open i88 MY">
+              <span>Open i88 MY</span>
+              <small>Regional updates and access</small>
+            </a>
+            <a class="cta cta-secondary magnetic" id="cta-sg" href="#" target="_blank" rel="noopener" aria-label="Open i88 SG">
+              <span>Open i88 SG</span>
+              <small>Regional updates and access</small>
+            </a>
+          </div>
+          <div class="hero-note">This is an info hub for guided access only.</div>
+        </div>
+        <div class="portal fade-up delay-1" aria-hidden="true">
+          <div class="portal-glow"></div>
+          <div class="portal-layer"></div>
+          <div class="portal-layer mid"></div>
+          <div class="portal-layer inner"></div>
         </div>
       </section>
 
       <section class="section fade-up delay-2" id="about">
         <div>
-          <h2 class="section-title">What this page is</h2>
-          <p class="section-lede">Designed for clarity and guided access before choosing a region.</p>
+          <h2 class="section-title">Why this gateway exists</h2>
+          <p class="section-lede">A calm overview that keeps access clear, regional, and transparent.</p>
         </div>
-        <div class="card-grid">
-          <article class="info-card" tabindex="0">
-            <strong>Platform updates</strong>
-            <p>Concise notes on what’s new and what’s changed.</p>
-          </article>
-          <article class="info-card" tabindex="0">
-            <strong>Feature previews</strong>
-            <p>Preview upcoming tools without extra noise.</p>
-          </article>
-          <article class="info-card" tabindex="0">
-            <strong>Regional announcements</strong>
-            <p>Info tailored to your local access path.</p>
-          </article>
-          <article class="info-card" tabindex="0">
-            <strong>Community info</strong>
-            <p>Shared updates for long-term users.</p>
-          </article>
+        <div class="divider" aria-hidden="true"></div>
+        <div class="trust-grid" id="trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            <strong>Clarity first</strong>
+            <span>Know where you are going before you continue.</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 10h14" /></svg>
+            <strong>Guided access</strong>
+            <span>Simple paths to the right regional page.</span>
+          </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z" /></svg>
+          <strong>Update focus</strong>
+          <span>Short, useful notes without extra noise.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12v8H6z" /></svg>
+          <strong>Community notes</strong>
+          <span>Designed for experienced users and regulars.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12l3 3 7-7" /></svg>
+          <strong>Since 2016</strong>
+          <span>Operating with a long-term, regional presence.</span>
+        </div>
+        </div>
+        <div class="mini-list">
+          <span>Platform updates</span>
+          <span>Feature previews</span>
+          <span>Regional info</span>
+          <span>Community notes</span>
         </div>
       </section>
 
-      <section class="section fade-up delay-3" id="regions">
-        <div class="cta-section">
-          <h2 class="section-title">Select your region</h2>
-          <p>Choose the region below to view the official page and updates.</p>
-          <div class="cta-row" aria-label="Regional selection">
-            <a class="cta magnetic" id="cta-my" href="#" target="_blank" rel="noopener" aria-label="Open MY Page">
-              <span>🇲🇾 Open MY Page</span>
-            </a>
-            <a class="cta cta-secondary magnetic" id="cta-sg" href="#" target="_blank" rel="noopener" aria-label="Open SG Page">
-              <span>🇸🇬 Open SG Page</span>
-            </a>
+      <section class="section fade-up" id="regions">
+        <div>
+          <h2 class="section-title">Quick regional access</h2>
+          <p class="section-lede">Choose the page that matches your location.</p>
+        </div>
+        <div class="region-split">
+          <div class="region-panel">
+            <h3>🇲🇾 Malaysia</h3>
+            <p>Local updates and access paths for MY.</p>
+            <a class="cta magnetic" href="#" id="cta-my-panel" target="_blank" rel="noopener" aria-label="Open i88 MY page">Open i88 MY</a>
+          </div>
+          <div class="region-panel">
+            <h3>🇸🇬 Singapore</h3>
+            <p>Local updates and access paths for SG.</p>
+            <a class="cta cta-secondary magnetic" href="#" id="cta-sg-panel" target="_blank" rel="noopener" aria-label="Open i88 SG page">Open i88 SG</a>
           </div>
         </div>
+        <div class="region-note">Review details before joining.</div>
       </section>
 
-      <section class="section fade-up" id="trust">
-        <h2 class="section-title">Trust signals</h2>
-        <div class="trust-list">
-          <span>Operating since 2016</span>
-          <span>Regional presence</span>
-          <span>Designed for experienced users</span>
-          <span>Information-first approach</span>
-        </div>
-      </section>
-
-      <footer id="links">
-        <a href="#" aria-label="Updates">Updates</a>
-        <a href="#" aria-label="Regions">Regions</a>
-        <a href="#" aria-label="Support">Support</a>
-        <a href="#" aria-label="Terms">Terms</a>
+      <footer>
+        <a href="#about" aria-label="About">About</a>
+        <a href="#regions" aria-label="Regions">Regions</a>
+        <a href="#trust" aria-label="Trust">Trust</a>
+        <span class="legal">Info-only gateway page.</span>
       </footer>
     </main>
   </div>
@@ -581,8 +736,13 @@
 
     const ctaMy = document.getElementById('cta-my');
     const ctaSg = document.getElementById('cta-sg');
+    const ctaMyPanel = document.getElementById('cta-my-panel');
+    const ctaSgPanel = document.getElementById('cta-sg-panel');
+
     ctaMy.href = MY_PAGE_URL;
     ctaSg.href = SG_PAGE_URL;
+    ctaMyPanel.href = MY_PAGE_URL;
+    ctaSgPanel.href = SG_PAGE_URL;
 
     const magneticButtons = document.querySelectorAll('.magnetic');
     magneticButtons.forEach((button) => {
@@ -598,13 +758,53 @@
       });
     });
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const bgLayer = document.querySelector('.bg-layer');
-    window.addEventListener('mousemove', (event) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 10;
-      const y = (event.clientY / window.innerHeight - 0.5) * 10;
-      bgLayer.style.setProperty('--parallax-x', `${x}px`);
-      bgLayer.style.setProperty('--parallax-y', `${y}px`);
-    });
+    const streaks = document.querySelector('.motion-streaks');
+    const portalLayers = document.querySelectorAll('.portal-layer');
+    const portalGlow = document.querySelector('.portal-glow');
+    const sweep = document.querySelector('.headline-sweep');
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let scrollY = 0;
+
+    if (!prefersReducedMotion) {
+      const updateParallax = () => {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        bgLayer.style.setProperty('--parallax-x', `${currentX}px`);
+        bgLayer.style.setProperty('--parallax-y', `${currentY}px`);
+
+        const shift = Math.min(scrollY / 6, 60);
+        document.documentElement.style.setProperty('--scroll-shift', `${shift}px`);
+        portalGlow.style.transform = `translateY(${shift * 0.2}px)`;
+        portalLayers.forEach((layer, index) => {
+          const depth = 0.3 + index * 0.2;
+          layer.style.transform = `translateY(${shift * depth}px) scale(${1 + index * 0.015})`;
+        });
+        streaks.style.transform = `translateY(${-shift * 0.2}px)`;
+
+        requestAnimationFrame(updateParallax);
+      };
+
+      window.addEventListener('mousemove', (event) => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 12;
+        const y = (event.clientY / window.innerHeight - 0.5) * 12;
+        targetX = x;
+        targetY = y;
+        const sweepX = Math.min(Math.max((event.clientX / window.innerWidth) * 100, 10), 90);
+        sweep.style.setProperty('--sweep-x', `${sweepX}%`);
+      });
+
+      window.addEventListener('scroll', () => {
+        scrollY = window.scrollY;
+      }, { passive: true });
+
+      requestAnimationFrame(updateParallax);
+    }
   </script>
 </body>
 </html>
