@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>i88 Official Updates Hub</title>
+  <title>i88 Official Info Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,14 +12,14 @@
     :root {
       --bg: #05070d;
       --ink: #eef2fb;
-      --muted: #a1afc9;
+      --muted: #9aa9c5;
       --primary: #45d7ff;
       --accent: #5b8bff;
       --glass: rgba(255, 255, 255, 0.07);
       --glass-strong: rgba(255, 255, 255, 0.12);
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --shadow-soft: 0 24px 60px rgba(4, 10, 24, 0.6);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow-soft: 0 26px 60px rgba(4, 10, 24, 0.6);
       --shadow-card: 0 16px 40px rgba(4, 10, 24, 0.45);
       --space-1: 8px;
       --space-2: 16px;
@@ -68,7 +68,7 @@
       inset: 0;
       z-index: -3;
       background:
-        radial-gradient(800px circle at 10% 10%, rgba(69, 215, 255, 0.22), transparent 60%),
+        radial-gradient(800px circle at 12% 12%, rgba(69, 215, 255, 0.22), transparent 60%),
         radial-gradient(700px circle at 85% 15%, rgba(91, 139, 255, 0.22), transparent 55%),
         linear-gradient(140deg, rgba(12, 19, 36, 0.95), rgba(4, 8, 16, 0.98));
       transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0);
@@ -182,22 +182,6 @@
       gap: var(--space-3);
     }
 
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-1);
-    }
-
-    .badge {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      font-size: 0.78rem;
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
-
     .hero-copy h1 {
       font-size: clamp(2.6rem, 4vw, 3.8rem);
       font-weight: 600;
@@ -211,97 +195,119 @@
       max-width: 480px;
     }
 
-    .mini-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--space-2);
-      margin-top: var(--space-2);
-    }
-
-    .mini-card {
-      padding: var(--space-3);
-      border-radius: var(--radius-md);
-      background: var(--glass);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: grid;
-      gap: 6px;
-      box-shadow: var(--shadow-card);
-      transition: transform 0.2s ease, border 0.2s ease;
-    }
-
-    .mini-card:hover,
-    .mini-card:focus-within {
-      transform: translateY(-3px);
-      border-color: rgba(69, 215, 255, 0.4);
-    }
-
-    .mini-card span {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .bulletin {
-      padding: var(--space-4);
+    .hero-visual {
+      position: relative;
+      padding: var(--space-5);
       border-radius: var(--radius-lg);
-      background: rgba(9, 16, 30, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: var(--shadow-soft);
+      min-height: 260px;
       display: grid;
       gap: var(--space-2);
+      overflow: hidden;
     }
 
-    .bulletin-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-2);
-      font-size: 0.95rem;
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(240px circle at 20% 20%, rgba(69, 215, 255, 0.25), transparent 70%);
+      opacity: 0.8;
+    }
+
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      inset: auto 12% 16% auto;
+      width: 160px;
+      height: 90px;
+      border-radius: 999px;
+      border: 1px solid rgba(69, 215, 255, 0.35);
+      opacity: 0.45;
+    }
+
+    .hero-visual-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
       color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    .live-dot {
+    .hero-visual-content span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-visual-content span::before {
+      content: '';
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--primary);
-      box-shadow: 0 0 12px rgba(69, 215, 255, 0.8);
-      animation: pulse 1.6s infinite;
+      box-shadow: 0 0 10px rgba(69, 215, 255, 0.6);
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.7;
-      }
-      50% {
-        transform: scale(1.3);
-        opacity: 1;
-      }
+    .section {
+      display: grid;
+      gap: var(--space-4);
     }
 
-    .bulletin-lines {
-      list-style: none;
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .section-lede {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 0.98rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .info-card {
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-card);
       display: grid;
       gap: 10px;
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+
+    .info-card:hover,
+    .info-card:focus-within {
+      transform: translateY(-3px);
+      border-color: rgba(69, 215, 255, 0.4);
+    }
+
+    .info-card p {
+      color: var(--muted);
       font-size: 0.95rem;
     }
 
-    .bulletin-lines li {
-      color: var(--muted);
-    }
-
-    .bulletin-lines li.active {
-      color: var(--ink);
-    }
-
-    .cta-panel {
-      padding: var(--space-4);
+    .cta-section {
+      padding: var(--space-5);
       border-radius: var(--radius-lg);
       background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
       border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: var(--shadow-soft);
       display: grid;
       gap: var(--space-3);
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      max-width: 560px;
     }
 
     .cta-row {
@@ -313,6 +319,7 @@
     .cta {
       position: relative;
       display: grid;
+      place-items: center;
       gap: 4px;
       padding: var(--space-3) var(--space-4);
       border-radius: 999px;
@@ -327,12 +334,6 @@
     .cta span {
       position: relative;
       z-index: 1;
-    }
-
-    .cta small {
-      font-weight: 500;
-      font-size: 0.78rem;
-      opacity: 0.75;
     }
 
     .cta::after {
@@ -378,78 +379,26 @@
       display: none;
     }
 
-    .section {
-      display: grid;
-      gap: var(--space-4);
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .timeline {
-      display: grid;
-      gap: var(--space-3);
-      position: relative;
-      padding-left: var(--space-4);
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 6px;
-      bottom: 6px;
-      width: 1px;
-      background: linear-gradient(to bottom, rgba(69, 215, 255, 0.6), transparent);
-    }
-
-    .timeline-item {
-      padding: var(--space-3);
-      border-radius: var(--radius-md);
-      background: rgba(7, 13, 26, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow-card);
-      display: grid;
-      gap: 6px;
-    }
-
-    .timeline-item p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .note {
-      padding: var(--space-3);
-      border-radius: var(--radius-md);
-      background: rgba(8, 16, 30, 0.8);
-      border: 1px dashed rgba(255, 255, 255, 0.2);
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .faq {
+    .trust-list {
       display: grid;
       gap: var(--space-2);
-    }
-
-    .faq details {
-      padding: var(--space-3);
-      border-radius: var(--radius-md);
-      background: rgba(7, 13, 26, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .faq summary {
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .faq p {
-      margin-top: var(--space-2);
       color: var(--muted);
       font-size: 0.95rem;
+    }
+
+    .trust-list span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trust-list span::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(69, 215, 255, 0.6);
     }
 
     footer {
@@ -462,30 +411,40 @@
 
     footer a {
       color: var(--ink);
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .reveal {
+    .fade-up {
       opacity: 0;
       transform: translateY(16px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      animation: fadeUp 0.8s ease forwards;
     }
 
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
+    .fade-up.delay-1 {
+      animation-delay: 0.15s;
+    }
+
+    .fade-up.delay-2 {
+      animation-delay: 0.3s;
+    }
+
+    .fade-up.delay-3 {
+      animation-delay: 0.45s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 960px) {
       .hero {
         grid-template-columns: 1fr;
-      }
-
-      .mini-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .nav-links {
@@ -498,16 +457,8 @@
         padding-top: var(--space-7);
       }
 
-      .mini-cards {
-        grid-template-columns: 1fr;
-      }
-
       .cta-row {
         grid-template-columns: 1fr;
-      }
-
-      .cta {
-        text-align: center;
       }
     }
 
@@ -520,11 +471,13 @@
         animation: none;
       }
 
-      .cta::after {
-        transition: none;
+      .fade-up {
+        animation: none;
+        opacity: 1;
+        transform: none;
       }
 
-      .reveal {
+      .cta::after {
         transition: none;
       }
     }
@@ -541,102 +494,81 @@
       <nav class="nav" aria-label="Primary">
         <div class="logo" aria-label="i88">i88</div>
         <div class="nav-links">
-          <a href="#how">How it works</a>
-          <a href="#faq">FAQ</a>
-          <a href="#links">Links</a>
+          <a href="#about">About</a>
+          <a href="#regions">Regions</a>
+          <a href="#trust">Trust</a>
         </div>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="top">
-        <div class="hero-copy reveal">
-          <div class="badge-row">
-            <span class="badge">Official Updates Hub</span>
-            <span class="badge">Since 2016</span>
-            <span class="badge">MY / SG</span>
-            <span class="badge">Guided Access</span>
-          </div>
-          <h1>Explore first — decide later 👀</h1>
-          <p>Tap your region to view updates, event info, and access steps.</p>
-          <div class="mini-cards" aria-label="Highlights">
-            <div class="mini-card">
-              <strong>📰 Updates</strong>
-              <span>Announcements & schedules</span>
-            </div>
-            <div class="mini-card">
-              <strong>🎁 Event Info</strong>
-              <span>How tickets & rewards work</span>
-            </div>
-            <div class="mini-card">
-              <strong>⚽ Sports Vibes</strong>
-              <span>Match highlights & weekly picks</span>
-            </div>
-          </div>
+        <div class="hero-copy fade-up">
+          <h1>Explore first. Decide when you’re ready.</h1>
+          <p>A simple place to check updates, features, and regional info.</p>
         </div>
-
-        <div class="reveal">
-          <div class="bulletin" aria-live="polite">
-            <div class="bulletin-header">
-              <span>Today’s Bulletin (Live)</span>
-              <span class="live-dot" aria-hidden="true"></span>
-            </div>
-            <ul class="bulletin-lines" id="bulletin-lines">
-              <li class="active">Christmas Monopoly mini-game is ongoing</li>
-              <li>Tickets unlock chances for premium gifts</li>
-              <li>Event ends: 1 Jan 2026</li>
-              <li>Choose MY / SG for local updates</li>
-            </ul>
-          </div>
-          <div class="cta-panel" aria-label="Regional selection">
-            <div class="cta-row">
-              <a class="cta magnetic" id="cta-my" href="#" target="_blank" rel="noopener" aria-label="Open i88 MY Page">
-                <span>Open i88 MY Page</span>
-                <small>MY updates + event schedule</small>
-              </a>
-              <a class="cta cta-secondary magnetic" id="cta-sg" href="#" target="_blank" rel="noopener" aria-label="Open i88 SG Page">
-                <span>Open i88 SG Page</span>
-                <small>SG updates + event schedule</small>
-              </a>
-            </div>
+        <div class="hero-visual fade-up delay-1" aria-hidden="true">
+          <div class="hero-visual-content">
+            <span>Stadium light traces</span>
+            <span>Motion lines and glow</span>
+            <span>Calm, neutral gateway</span>
           </div>
         </div>
       </section>
 
-      <section class="section reveal" id="how">
+      <section class="section fade-up delay-2" id="about">
         <div>
-          <h2 class="section-title">How it works (2 steps)</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <strong>1. Register</strong>
-              <p>Start with the regional page that fits your location.</p>
-            </div>
-            <div class="timeline-item">
-              <strong>2. Collect tickets</strong>
-              <p>Tickets are used for event participation and reward chances.</p>
-            </div>
+          <h2 class="section-title">What this page is</h2>
+          <p class="section-lede">Designed for clarity and guided access before choosing a region.</p>
+        </div>
+        <div class="card-grid">
+          <article class="info-card" tabindex="0">
+            <strong>Platform updates</strong>
+            <p>Concise notes on what’s new and what’s changed.</p>
+          </article>
+          <article class="info-card" tabindex="0">
+            <strong>Feature previews</strong>
+            <p>Preview upcoming tools without extra noise.</p>
+          </article>
+          <article class="info-card" tabindex="0">
+            <strong>Regional announcements</strong>
+            <p>Info tailored to your local access path.</p>
+          </article>
+          <article class="info-card" tabindex="0">
+            <strong>Community info</strong>
+            <p>Shared updates for long-term users.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section fade-up delay-3" id="regions">
+        <div class="cta-section">
+          <h2 class="section-title">Select your region</h2>
+          <p>Choose the region below to view the official page and updates.</p>
+          <div class="cta-row" aria-label="Regional selection">
+            <a class="cta magnetic" id="cta-my" href="#" target="_blank" rel="noopener" aria-label="Open MY Page">
+              <span>🇲🇾 Open MY Page</span>
+            </a>
+            <a class="cta cta-secondary magnetic" id="cta-sg" href="#" target="_blank" rel="noopener" aria-label="Open SG Page">
+              <span>🇸🇬 Open SG Page</span>
+            </a>
           </div>
         </div>
-        <div class="note">Tip: Always read promo/event details before joining ✅</div>
-        <div class="faq" id="faq">
-          <details>
-            <summary>Is this an official page?</summary>
-            <p>Yes, this is our updates hub to guide new visitors.</p>
-          </details>
-          <details>
-            <summary>How do tickets work?</summary>
-            <p>Tickets are used for event participation and reward chances.</p>
-          </details>
-          <details>
-            <summary>Where can I see full promo details?</summary>
-            <p>Use Promotions/Event links below.</p>
-          </details>
+      </section>
+
+      <section class="section fade-up" id="trust">
+        <h2 class="section-title">Trust signals</h2>
+        <div class="trust-list">
+          <span>Operating since 2016</span>
+          <span>Regional presence</span>
+          <span>Designed for experienced users</span>
+          <span>Information-first approach</span>
         </div>
       </section>
 
       <footer id="links">
-        <a href="#" aria-label="Promotions">Promotions</a>
-        <a href="#" aria-label="Event">Event</a>
+        <a href="#" aria-label="Updates">Updates</a>
+        <a href="#" aria-label="Regions">Regions</a>
         <a href="#" aria-label="Support">Support</a>
         <a href="#" aria-label="Terms">Terms</a>
       </footer>
@@ -668,32 +600,11 @@
 
     const bgLayer = document.querySelector('.bg-layer');
     window.addEventListener('mousemove', (event) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 12;
-      const y = (event.clientY / window.innerHeight - 0.5) * 12;
+      const x = (event.clientX / window.innerWidth - 0.5) * 10;
+      const y = (event.clientY / window.innerHeight - 0.5) * 10;
       bgLayer.style.setProperty('--parallax-x', `${x}px`);
       bgLayer.style.setProperty('--parallax-y', `${y}px`);
     });
-
-    const lines = document.querySelectorAll('#bulletin-lines li');
-    let lineIndex = 0;
-    setInterval(() => {
-      lines[lineIndex].classList.remove('active');
-      lineIndex = (lineIndex + 1) % lines.length;
-      lines[lineIndex].classList.add('active');
-    }, 3000);
-
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    reveals.forEach((section) => observer.observe(section));
   </script>
 </body>
 </html>
